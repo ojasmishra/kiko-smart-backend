@@ -10,10 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log(`MongoDB Connected ${PORT} and URI is ${process.env.MONGO_URI}`))
 .catch(err => console.error('MongoDB Error:', err));
 
@@ -22,7 +19,9 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/children', require('./routes/child'));
 app.use('/api/ai', require('./routes/ai'));
 
-
+app.get('/', (req,res)=>{
+  res.json("Server is Running")
+})
 
 
 // Server
