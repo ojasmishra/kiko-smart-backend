@@ -60,7 +60,7 @@ exports.getChildren = async (req, res) => {
       age: child.age,
       height: child.height,
       weight: child.weight,
-      interests: child.interests,
+      gender:child.gender,
       recommendation: child.recommendation
     }));
 
