@@ -1,21 +1,26 @@
-// controllers/aiController.js
-const generateChatGPTResponse = require("../utils/trainedML");
+  const axios = require("axios");
 
-exports.getWellnessPlan = async (req, res) => {
-  
-const data = {
-  desc: "Generate a daily wellness plan for this child",
-  name: "Aryan",
-  age: 7,
-  height: 120,
-  weight: 25,
-  interests: ["drawing", "running"]
-};
+ const generateFlaskRecommendation = require("../utils/flask");
+
+// This MUST be async
+exports.addChildWithAI = async (req, res) => {
+  const { name, age, height, weight, interests, gender } = req.body;
 
   try {
-    const result = await generateChatGPTResponse(data);
-    res.json(result);
+    const aiResponse = await generateFlaskRecommendation({
+      age,
+      height,
+      weight,
+      gender,
+    });
+
+    // Use aiResponse here (e.g., save to DB)
+    res.status(200).json({
+      message: "AI recommendation fetched successfully",
+      data: aiResponse,
+    });
+
   } catch (error) {
-    res.status(500).json({ message: "AI generation failed", error: error.message });
+    res.status(500).json({ message: "Error generating AI recommendation", error: error.message });
   }
 };

@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email already registered' });

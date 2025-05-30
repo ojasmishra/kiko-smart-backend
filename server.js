@@ -13,7 +13,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log(`MongoDB Connected ${PORT} and URI is ${process.env.MONGO_URI}`))
 .catch(err => console.error('MongoDB Error:', err));
-
+require('./jobs/dailyRecommendationUpdate'); 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/children', require('./routes/child'));

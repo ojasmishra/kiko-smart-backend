@@ -12,7 +12,13 @@ const userSchema = new mongoose.Schema(
         age: { type: Number, required: true },
         height: { type: Number, required: true },
         weight: { type: Number, required: true },
+        gender: { type: String, enum: ["male", "female"], required: true },
         interests: [{ type: String }],
+        recommendation: {
+             diet: String,
+             extracurricular: String,
+             exercise: String
+    },
 
         todayPlan: {
           diet: { type: [String], default: [] },         

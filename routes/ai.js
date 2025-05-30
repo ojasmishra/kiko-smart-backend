@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getWellnessPlan } = require('../controllers/aiController');
-const authMiddleware = require('../middleware/authMiddleware');
 
-router.get('/generateplan', authMiddleware, getWellnessPlan);
+const authMiddleware = require('../middleware/authMiddleware');
+const generateFlaskRecommendation = require('../utils/flask');
+
+router.get('/generateplan', authMiddleware, generateFlaskRecommendation );
 
 module.exports = router;
