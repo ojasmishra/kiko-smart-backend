@@ -18,7 +18,6 @@ require('./jobs/dailyRecommendationUpdate');
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/children', require('./routes/child'));
 app.use('/api/ai', require('./routes/ai'));
-
 app.get('/', (req,res)=>{
   res.json("Server is Running")
 })
